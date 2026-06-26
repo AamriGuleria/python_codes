@@ -5,19 +5,19 @@ def brute_force_approach(nums):
      nums = list(set(nums))
      nums.sort()
      print(nums[-2])
-     
-def secondLargestElement( nums):
-        largest = -1
-        second_largest = -1
-        is_second_largest = False
-        for i, num in enumerate(nums):
-            if num>largest:
-                largest = num
-            elif num>second_largest and num<largest:
-                is_second_largest = True
-                second_largest = num
 
-        return second_largest
+def secondLargestElement(nums):
+    largest = float('-inf')
+    second_largest = float('-inf')
+
+    for num in nums:
+        if num > largest:
+            second_largest = largest
+            largest = num
+        elif largest > num > second_largest:
+            second_largest = num
+
+    return -1 if second_largest == float('-inf') else second_largest
 
 
 if __name__ == "__main__":
