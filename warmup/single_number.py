@@ -8,6 +8,12 @@ def singleNumber(self, nums: List[int]) -> int:
             return key
     return -1
 
+def optimized_approach_xor(self, nums):
+    ans = 0
+    for num in nums:
+        ans ^= num
+    return ans
+
 
 if __name__ == "__main__":
     array = str(input("Enter the array elements: "))
