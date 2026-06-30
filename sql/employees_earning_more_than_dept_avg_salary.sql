@@ -10,3 +10,13 @@ FROM employees e
 JOIN Avg_Salary
     ON e.dept = Avg_Salary.dept
 WHERE e.salary > Avg_Salary.average_salary;
+
+
+-- Correlated query
+SELECT e.id, e.salary, e.dept
+FROM employees e
+WHERE e.salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE dept = e.dept 
+);
