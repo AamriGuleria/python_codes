@@ -20,6 +20,16 @@ def moveZeroes(self, nums: List[int]) -> None:
             i=i+1
     nums[:] = nums + [0] * count_zeroes
 
+def optimized_approach(self,nums):
+    w = 0
+    r = 0
+    n = len(nums)
+    while r<n:
+        if nums[r] != 0:
+            nums[w], nums[r] = nums[r], nums[w]
+            w += 1
+        r=r+1
+    return nums
 if __name__ == "__main__":
     array = str(input("Enter the array elements: "))
     array = array.split()
