@@ -20,3 +20,14 @@ WHERE e.salary > (
     FROM employees
     WHERE dept = e.dept 
 );
+
+-- window function approach
+WITH employee_stats(id,name,salary,avg_salary)
+AS(
+select employees.id, employees.name,employees.salary,
+AVG(employees.salary) OVER (PARTITION BY employees.dept as avg_salary)
+from employees)
+
+SELECT id, salary, dept, avg_salary
+FROM employee_stats
+WHERE salary > avg_salary;
