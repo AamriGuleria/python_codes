@@ -14,5 +14,4 @@ def sortColors(self, nums: List[int]) -> None:
 if __name__ == "__main__":
     array = str(input("Enter the array elements: "))
     array = array.split()
-    k = int(input("Enter the number"))
     sortColors(array)
