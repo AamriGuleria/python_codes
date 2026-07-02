@@ -1,4 +1,12 @@
+from collections import Counter
 from typing import List
+
+def majorityElement2(self, nums: List[int]) -> List[int]:
+    n=len(nums)
+    max_len = n//3
+    count = Counter(nums)
+    return [num for num,c in count.items() if c>max_len]
+
 def majorityElement(self, nums: List[int]) -> List[int]:
     n=len(nums)
     max_freq = n//3
