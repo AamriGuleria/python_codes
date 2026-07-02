@@ -5,12 +5,9 @@ def majorityElement(self, nums: List[int]) -> List[int]:
     final_list = []
     seen={}
     for i in nums:
-        if i in seen:
-            seen[i]=seen[i]+1
-        else:
-            seen[i]=1
-    for k,v in seen.items():
-        if v>max_freq:
+        seen[i] = seen.get(i, 0) + 1
+    for k, v in seen.items():
+        if v > max_freq:
             final_list.append(k)
     return final_list
 
