@@ -6,6 +6,13 @@ class ListNode:
         self.next = next
 
 class Solution:
+    def optimizedMiddleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         node = head
         n=1
