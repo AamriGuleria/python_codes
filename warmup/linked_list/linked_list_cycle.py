@@ -14,3 +14,12 @@ class Solution:
             seen.add(temp)
             temp=temp.next
         return False
+    # turotoise and hare approach
+    def optimizedHasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = fast = head
+        while fast and fast.next:
+            if slow == fast.next:
+                return True
+            slow = slow.next
+            fast = fast.next.next
+        return False
