@@ -22,3 +22,9 @@ class Solution:
             if self.isGood(str(s)):
                 count=count+1
         return count
+
+    def formulaBasedCountGoodNumbers(self, n: int) -> int:
+        even_positions = (n + 1) // 2   
+        odd_positions = n // 2 
+        MOD = 10**9 + 7
+        return (pow(5, even_positions, MOD) * pow(4, odd_positions, MOD)) % MOD
