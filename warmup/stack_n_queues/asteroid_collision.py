@@ -27,3 +27,24 @@ class Solution:
             i -= 1
         
         return stack
+    def optimizedAsteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        n = len(asteroids)
+        i = 0
+        while i < n:
+            elem = asteroids[i]
+            exploded = False
+            while elem < 0 and stack and stack[-1] > 0:
+                if stack[-1] < -elem:
+                    stack.pop()      
+                elif stack[-1] == -elem:
+                    stack.pop()        
+                    exploded = True
+                    break
+                else:
+                    exploded = True     
+                    break
+            if not exploded:
+                stack.append(elem)
+            i += 1
+        return stack
