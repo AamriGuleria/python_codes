@@ -24,3 +24,16 @@ class Solution:
             window.add(s[r])
             max_len = max(max_len, r - l + 1)
         return max_len
+
+# Best approach removing the whole innter loop by keeping track of each character index
+class Solution:
+    def bestLengthOfLongestSubstring(self, s: str) -> int:
+        last_seen = {}
+        max_len = 0
+        l = 0
+        for r, ch in enumerate(s):
+            if s[r] in last_seen and last_seen[ch] >= l:
+                l = last_seen[ch] + 1
+            last_seen[ch] = r
+            max_len = max(max_len, r - l + 1)
+        return max_len
