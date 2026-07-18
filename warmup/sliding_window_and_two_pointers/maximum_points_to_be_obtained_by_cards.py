@@ -8,7 +8,7 @@ class Solution:
             return total
         min_sub = None
         i = 0
-        for i in range(k):
+        for i in range(k+1):
             sub = sum(cardPoints[i:i+window])
             min_sub = sub if min_sub == None else min(min_sub,sub)
         return total-min_sub
