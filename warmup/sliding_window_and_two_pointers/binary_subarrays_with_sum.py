@@ -13,3 +13,20 @@ class Solution:
                 if curr > goal:
                     break
         return count
+
+    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        def atMost(goal):
+            if goal < 0:
+                return 0
+            l = 0
+            curr = 0
+            res = 0
+            for r in range(len(nums)):
+                curr += nums[r]
+                while curr > goal:
+                    curr -= nums[l]
+                    l += 1
+                res += r - l + 1  
+            return res
+        
+        return atMost(goal) - atMost(goal - 1)
