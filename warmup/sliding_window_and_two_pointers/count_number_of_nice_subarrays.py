@@ -27,3 +27,26 @@ class Solution:
                 if odd_count == k:
                     result += 1
         return result
+
+
+    def improvedNumberOfSubarrays(self, nums: List[int], k: int) -> int:
+        def atMost(k):
+            if k < 0:
+                return 0
+            n=len(nums)
+            result=0
+            l=0
+            count_odd=0
+            def is_odd(num):
+                return num%2!=0
+            for r in range(n):
+                if is_odd(nums[r]):
+                    count_odd+=1
+                while count_odd>k:
+                    if is_odd(nums[l]):
+                        count_odd-=1
+                    l=l+1
+                result += r - l + 1
+            return result
+        
+        return atMost(k) - atMost(k-1)
