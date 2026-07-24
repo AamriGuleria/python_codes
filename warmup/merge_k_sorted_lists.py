@@ -19,3 +19,25 @@ class Solution:
             new_node.next = ListNode(num)
             new_node=new_node.next
         return return_node.next
+class Solution:
+    def mergeTwoLists(self,l1,l2):
+        curr = ListNode(0)
+        return_node = curr
+        while l1 and l2:
+            if l1.val<l2.val:
+                curr.next, l1 = l1, l1.next
+            else:
+                curr.next, l2 = l2, l2.next
+            curr = curr.next
+        curr.next = l1 if l1 else l2
+        return return_node.next
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        l3 = None
+        while len(lists)>1:
+            l1 = lists.pop()
+            l2 = lists.pop()
+            l3 = self.mergeTwoLists(l1,l2)
+            lists.append(l3)
+        return lists[0] if lists else l3
+        
