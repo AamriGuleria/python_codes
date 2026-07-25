@@ -1,4 +1,5 @@
 from typing import List
+from collections import Counter
 class Solution:
     def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
         def atMost(k):
