@@ -18,3 +18,22 @@ class Solution:
                         recursive_approach(valid_stack, i+1))
         
         return recursive_approach([],0)
+
+    def checkValidString(self, s: str) -> bool:
+        n=len(s)
+        lo=0
+        hi=0
+        for i in range(n):
+            if s[i]=='(':
+                lo+=1
+                hi+=1
+            elif s[i]==')':
+                lo-=1
+                hi-=1
+            else:
+                lo-=1
+                hi+=1
+            if hi<0:
+                return False
+            lo = max(lo, 0)
+        return lo==0 
