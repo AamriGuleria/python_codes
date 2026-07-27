@@ -13,3 +13,12 @@ class Solution:
                     return True
             return False
         return recursive_approach(0)
+
+    def canJump(self, nums: List[int]) -> bool:
+        max_reach = 0
+        n = len(nums)
+        for i, num in enumerate(nums):
+            if i>max_reach:
+                return False
+            max_reach = max(max_reach, i + num)
+        return True
