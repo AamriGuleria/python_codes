@@ -26,3 +26,17 @@ class Solution:
         # if root and root.left:
         #     self.left_shadow(root.left,0,self.max_level)
         return self.right
+
+# Best Approach , at each level we have to append just one element which is most outer , so calling the function with right first then left so most outer element gets appended first
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        result = []
+        def dfs(node, level):
+            if not node:
+                return
+            if level == len(result):
+                result.append(node.val)
+            dfs(node.right, level + 1)
+            dfs(node.left, level + 1)
+        dfs(root, 0)
+        return result
