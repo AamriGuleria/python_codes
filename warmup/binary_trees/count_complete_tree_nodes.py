@@ -16,3 +16,11 @@ class Solution:
             recursive_approach(node.right)
         recursive_approach(root)
         return count
+
+class Solution:
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+        def recursive_approach(node):
+            if node==None:
+                return 0
+            return 1+recursive_approach(node.left)+recursive_approach(node.right)
+        return recursive_approach(root)
