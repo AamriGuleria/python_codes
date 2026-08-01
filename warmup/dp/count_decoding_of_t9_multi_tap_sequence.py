@@ -14,10 +14,10 @@ letter_count = {
 def count_sequence(s:str)->int:
     def ways_for_group(length,k):
         dp = [0]*(length+1)
-        dp[1]=1
+        dp[0]=1
         for n in range(1,length+1):
             for step in range(1,k+1):
-                if n-step>0:
+                if n-step>=0:
                     dp[n]+=dp[n-step]
         return dp[length]
     # find number of grouping for consecutive same numbers
