@@ -4,7 +4,6 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
-
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         lst=[]
@@ -12,12 +11,12 @@ class Solution:
             nonlocal lst
             if node == None:
                 return
-            if level==k:
-                lst.append(node.val)
             if check:
                 level+=1
             if not check and node==target:
                 check=True
+            if level==k:
+                lst.append(node.val)
             
             recursive_approach(node.left,level,check)
             recursive_approach(node.right,level,check)     
