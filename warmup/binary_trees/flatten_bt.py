@@ -26,3 +26,24 @@ class Solution:
         node.left = None
         return return_node.right
         
+
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        node = TreeNode(0)
+        dummy = node
+        def recursive_approach(curr):
+            nonlocal node
+            if curr is None:
+                return
+            left, right = curr.left, curr.right
+            node.left = None
+            node.right = curr
+            node = node.right
+            recursive_approach(left)
+            recursive_approach(right)
+        recursive_approach(root)
+        node.left = None
+        return dummy.right
