@@ -14,3 +14,15 @@ class Solution:
             else:
                 break
         return count
+
+class Solution:
+    def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
+        deficits = sorted(c - r for c, r in zip(capacity, rocks))
+        count = 0
+        for d in deficits:
+            if d <= additionalRocks:
+                count += 1
+                additionalRocks -= d
+            else:
+                break
+        return count
