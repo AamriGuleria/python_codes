@@ -1,4 +1,5 @@
 from typing import Optional
+# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -11,9 +12,5 @@ class Solution:
                 return None
             if node.val == val:
                 return node
-            return recursive_approach(node.left) or recursive_approach(node.right)
-
-        if recursive_approach(root):   
-            return recursive_approach(root)
-        else:
-            return None
+            return recursive_approach(node.left) or recursive_approach(node.right) 
+        return recursive_approach(root)
