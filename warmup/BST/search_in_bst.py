@@ -7,10 +7,11 @@ class TreeNode:
         self.right = right
 class Solution:
     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-        def recursive_approach(node):
-            if not node:
-                return None
-            if node.val == val:
-                return node
-            return recursive_approach(node.left) or recursive_approach(node.right) 
-        return recursive_approach(root)
+        if not root:
+            return None
+        if root.val == val:
+            return root
+        elif val < root.val:
+            return self.searchBST(root.left, val)
+        else:
+            return self.searchBST(root.right, val)
