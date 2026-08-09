@@ -6,4 +6,4 @@ class Solution:
         for i in range(1,n):
             if nums[i]!=nums[i-1]+1:
                 return nums[i-1]+1
-        return nums[n-1]+1
+        return nums[n-1]+1 if nums[n-1]+1 == n else 0
