@@ -15,3 +15,12 @@ class Solution:
         for i in range(0,n+1):
             if i not in nums:
                 return i
+            
+# Best Approach Gauss' sum formula 
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        # 1. Gauss' Sum Formula (Math)
+        n = len(nums)
+        expected_sum = n * (n + 1) // 2
+        actual_sum = sum(nums)
+        return expected_sum - actual_sum
