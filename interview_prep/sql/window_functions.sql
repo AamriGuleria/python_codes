@@ -71,3 +71,28 @@ SELECT e.emp_id,
 FROM employees e
 JOIN departments d
   ON e.dept_id = d.dept_id;
+
+
+-- Use FIRST_VALUE() to show the name of the earliest-hired employee in each department, next to every row in that department
+-- Use LAST_VALUE() to show the most recent hire in each department next to every row — and explain why you need to adjust the frame (ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) to get a correct answer.
+
+SELECT 
+    d.dept_id, 
+    d.dept_name, 
+    e.emp_name,
+    -- Earliest hired name
+    FIRST_VALUE(e.emp_name) OVER (
+        PARTITION BY d.dept_id 
+        ORDER BY e.hire_date ASC
+    ) AS earliest_hire_name,
+    
+    -- Most recent hired name
+    LAST_VALUE(e.emp_name) OVER (
+        PARTITION BY d.dept_id 
+        ORDER BY e.hire_date ASC
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS latest_hire_name
+FROM 
+    departments d 
+JOIN 
+    employees e ON d.dept_id = e.dept_id;   
