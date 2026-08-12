@@ -16,3 +16,18 @@ class Solution:
             return recursive_approach(node.left) or recursive_approach(node.right)
             return False
         return recursive_approach(root)
+
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        seen = set()
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node is None:
+                continue
+            if k-node.val in seen:
+                return True
+            seen.add(node.val)
+            stack.append(node.left)
+            stack.append(node.right)
+        return False
