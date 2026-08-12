@@ -6,13 +6,13 @@ class TreeNode:
         self.right = right
 class Solution:
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
-        seen = []
+        seen = set()
         def recursive_approach(node):
             if node == None:
                 return False
             if k-node.val in seen:
                 return True
-            seen.append(node.val)
+            seen.add(node.val)
             return recursive_approach(node.left) or recursive_approach(node.right)
             return False
         return recursive_approach(root)
