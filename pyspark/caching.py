@@ -1,3 +1,7 @@
+from spark_env import configure_spark_env
+
+configure_spark_env()
+
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("CachingExample").getOrCreate()

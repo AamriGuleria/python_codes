@@ -1,7 +1,6 @@
-import os
+from spark_env import configure_spark_env
 
-os.environ["PYSPARK_PYTHON"] = r"C:\Users\asus\Documents\python_codes\pyspark\.venv\Scripts\python.exe"
-os.environ["PYSPARK_DRIVER_PYTHON"] = r"C:\Users\asus\Documents\python_codes\pyspark\.venv\Scripts\python.exe"
+configure_spark_env()
 
 from pyspark.sql import SparkSession
 

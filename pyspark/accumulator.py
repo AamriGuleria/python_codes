@@ -1,10 +1,8 @@
-import os
-import sys
+from spark_env import configure_spark_env
+
+configure_spark_env()
 
 from pyspark.sql import SparkSession
-
-os.environ["PYSPARK_PYTHON"] = sys.executable
-os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
 
 spark = SparkSession.builder.appName("AccumulatorExample").getOrCreate()
 sc = spark.sparkContext
