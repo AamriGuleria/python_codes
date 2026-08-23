@@ -49,4 +49,9 @@ delta_table.alias("target").merge(new_data.alias("source"),"target.id = source.i
 
 spark.sql("SELECT * FROM bronze_employees ORDER BY id").show()
 
+
+# Time Travel
+spark.sql("DESCRIBE HISTORY bronze_employees").show(truncate=False)
+spark.sql("SELECT * FROM bronze_employees VERSION AS OF 0").show()
+
 spark.stop()
