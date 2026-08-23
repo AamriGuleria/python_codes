@@ -69,5 +69,8 @@ enriched.write.format("delta") \
 spark.sql("OPTIMIZE bronze_employees").show()
 spark.sql("OPTIMIZE bronze_employees ZORDER BY (domain)").show()
 
+# VACUUM
+spark.sql("VACUUM bronze_employees RETAIN 168 HOURS")
+
 
 spark.stop()
