@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 from spark_env import configure_spark_env
+from pyspark.sql.functions import broadcast
 
 configure_spark_env()
 spark = SparkSession.builder.appName("Joins").getOrCreate()
@@ -20,5 +21,6 @@ df2 = emp_df.join(dept_df, emp_df.dept_id == dept_df.id, "inner")
 df3 = emp_df.join(dept_df, emp_df.dept_id == dept_df.id, "left")
 df4 = emp_df.join(dept_df, emp_df.dept_id == dept_df.id, "right")
 df5 = emp_df.join(dept_df, emp_df.dept_id == dept_df.id, "full")
-df2.show()
+df6 = emp_df.join(broadcast(depts), emp_df.dept_id == dept_df.id, how="inner").show()
+df6.show()
 
