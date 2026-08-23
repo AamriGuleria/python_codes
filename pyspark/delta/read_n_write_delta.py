@@ -7,6 +7,7 @@ from spark_env import configure_spark_env
 from delta import configure_spark_with_delta_pip
 from pyspark.sql import SparkSession
 from delta.tables import DeltaTable
+from pyspark.sql.functions import col
 
 configure_spark_env()
 
@@ -53,5 +54,13 @@ spark.sql("SELECT * FROM bronze_employees ORDER BY id").show()
 # Time Travel
 spark.sql("DESCRIBE HISTORY bronze_employees").show(truncate=False)
 spark.sql("SELECT * FROM bronze_employees VERSION AS OF 0").show()
+
+
+# Schema Evolution
+enriched = new_data.withColumn("bonus", (col("salary") * 0.1))
+enriched.write.format("delta") \
+    .mode("append") \
+    .option("mergeSchema", "true") \
+    .saveAsTable("bronze_employees")
 
 spark.stop()
