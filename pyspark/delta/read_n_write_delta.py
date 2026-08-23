@@ -63,4 +63,11 @@ enriched.write.format("delta") \
     .option("mergeSchema", "true") \
     .saveAsTable("bronze_employees")
 
+
+
+# Optimize and zorder
+spark.sql("OPTIMIZE bronze_employees").show()
+spark.sql("OPTIMIZE bronze_employees ZORDER BY (domain)").show()
+
+
 spark.stop()
