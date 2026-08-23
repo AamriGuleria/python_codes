@@ -19,6 +19,4 @@ df2 = (df.select(col("id"), col("name"), col("salary")) \
     .withColumn("salary_band", when(col("salary")>70000, "high").otherwise("low"))
 )
 
-
-
 df2.show()
