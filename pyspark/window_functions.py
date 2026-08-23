@@ -21,3 +21,9 @@ df_with_rank = df.withColumn(
     "rank_w_domain", rank().over(w)
 ).withColumn("prev_salary", lag("salary").over(w))
 df_with_rank.show()
+
+filtered = df.filter(col("country") == "IN").cache()
+filtered.count()
+filtered.groupBy("domain").count().show()
+filtered.unpersist()
+spark.stop()
