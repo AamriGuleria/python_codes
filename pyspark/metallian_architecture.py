@@ -27,6 +27,6 @@ silver_df.write.format("delta").mode("overwrite").saveAsTable("silver_validated"
 gold_df = spark.table("silver_validated").groupBy("domain").agg(avg("salary").alias("avg_salary"), count("*").alias("headcount"))
 gold_df.write.format("delta").mode("overwrite").saveAsTable("gold_summary")
 
-spark.sql("SELECT * FROM gold_domain_summary").show()
+spark.sql("SELECT * FROM gold_summary").show()
 
 spark.stop()
