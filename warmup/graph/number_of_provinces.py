@@ -39,3 +39,20 @@ class Solution:
             if city not in self.grouped:
                 self.groups.append({city})
         return len(self.groups)
+class Solution:
+    def dfs(self, i, visited, isConnected, n):
+        visited[i] = True 
+        for j in range(n):
+            if isConnected[i][j] == 1 and not visited[j]:
+                self.dfs(j, visited, isConnected, n)
+            
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        n = len(isConnected)
+        visited = [False] * n
+        provinces = 0
+        for city in range(n):
+            if not visited[city]:
+                provinces += 1
+                self.dfs(city, visited, isConnected, n)
+        return provinces
+            
