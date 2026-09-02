@@ -34,3 +34,26 @@ class Solution:
                 else:
                     new_mat[i][j] = self.recursive_search(mat, i, j, memo, set())
         return new_mat
+    
+
+from collections import deque
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        rows , cols = len(mat),len(mat[0])
+        queue = deque()
+        dist = [[-1] * cols for _ in range(rows)]
+        directions = [(1,0),(-1,0),(0,1),(0,-1)]
+        for i in range(rows):
+            for j in range(cols):
+                if mat[i][j] == 0:
+                    dist[i][j] = 0
+                    queue.append((i, j))
+
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in directions:
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < rows and 0 <= ny < cols and dist[nx][ny] == -1:
+                    dist[nx][ny] = dist[x][y] + 1
+                    queue.append((nx, ny))
+        return dist
