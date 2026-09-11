@@ -24,3 +24,4 @@ class Solution:
                     diff = abs(heights[i][j] - heights[nx][ny])
                     new_effort = max(efforts, diff)
                     heapq.heappush(min_heap, (new_effort, nx, ny))
+        return 0
