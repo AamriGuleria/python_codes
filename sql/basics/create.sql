@@ -9,3 +9,5 @@ CREATE TABLE orders(
     payment_mode VARCHAR(100),
     created_at TIMESTAMP
 )
+
+CREATE INDEX idx_orders_status  ON orders(status)
