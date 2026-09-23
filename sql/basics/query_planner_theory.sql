@@ -24,3 +24,11 @@ VACUUM orders;
 
 
 -- Postgres runs this automatically via autovacuum in the background, but heavy-write tables can outpace it, causing bloat and slow queries until it catches up or you tune autovacuum settings.
+
+
+-- Basic Transaction Syntax
+
+BEGIN;
+UPDATE dim_customer SET email="xyz@gmail.com" WHERE customer_id = 123;
+INSERT INTO fact_orders(order_id, order_name) VALUES('123','chocolate_bundle_batch_30');
+COMMIT;
